@@ -1,0 +1,75 @@
+<div class="com">
+	<h3>接口说明</h3>
+	<pre class="prettyprint linenums order">
+YJH.BluetoothleManager.reconnect(
+	reconnectSuccess,   \\成功回调
+	reconnectError,   \\失败回调 
+	{ 
+		"address": "addressUUID"   \\需要连接的蓝牙设备UUID
+	}
+);
+	</pre>
+	
+	
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>address</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>需要连接的蓝牙设备UUID</li>
+		</ul>
+		
+	</div>
+	
+	<div class="wrap2">
+		<h3>调用实例:</h3>
+		<pre class="prettyprint linenums order">
+document.addEventListener("deviceready",Deviceready(),false)
+
+function Deviceready(){
+	YJH.BluetoothleManager.reconnect(
+    \\成功回调
+	function(succ){   
+		var name=succ.name   
+		\\成功时返回的配对设备名称
+		var address=succ.address  
+		\\成功时返回的配对蓝牙地址
+		var status=succ.status  
+		\\成功时返回的配对状态，可以为"connected"或者"disconnected"
+	},
+	
+	\\失败回调
+	function(err){   
+		
+		var error=err.error   
+		\\配对失败时返回的状态，可以为"enable"或者"initialize"或者"arguments"
+		或者"neverConnected"或者"isNotDisconnected"
+		
+		var message=err.message   
+		\\配对失败时返回的错误信息，可以为"Bluetooth not enabled"或者
+		"Bluetooth not initialized"或者"Argument object not found"或者
+		"Never connected to connection"或者"Device isn't disconnected"
+		
+		var name=err.name   \\配对的设备名称,可以没有
+		
+		var address=err.address   \\配对的蓝牙地址,可以没有
+	},
+	
+	\\参数
+	{ 
+	"address": "address"   \\需要连接的蓝牙设备UUID
+	}
+  );
+}
+
+		</pre>
+		
+		
+	</div>
+</div>

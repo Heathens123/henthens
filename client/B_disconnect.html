@@ -1,0 +1,74 @@
+<div class="com">
+	<h3> 接口说明</h3>
+	<pre class="prettyprint linenums order">
+YJH.BluetoothleManager.disconnect(
+	disconnectSuccess,   \\成功回调
+	disconnectError,   \\失败回调
+	{ 
+		"address": "addressUUID "   \\特定蓝牙设备的UUID 
+	}
+);
+	</pre>
+	
+	
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>address</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>特定蓝牙设备的UUID</li>
+		</ul>
+		
+	</div>
+	<div class="wrap2">
+		<h3>调用实例:</h3>
+		<pre class="prettyprint linenums order">
+			
+document.addEventListener("deviceready",Deviceready(),false)
+
+function Deviceready(){
+	YJH.BluetoothleManager.disconnect(
+	\\成功回调
+	function(succ){   
+		var name=succ.name   
+		\\配对的蓝牙设备名称。如"Polar H7 3B321015"
+		var address=succ.address   
+		\\配对的蓝牙设备地址，如"ECC037FD-72AE-AFC5-9213-CA785B3B5C63"
+		var status=succ.status   
+		\\连接状态，如"disconnected"
+	},
+	
+	\\失败回调
+	function(err){   
+		var error=err.error   
+		\\配对失败时返回的状态，可以为"enable"或"initialize"或"arguments"
+		或"neverConnected"或"isNotDisconnected"或"connect"。
+		
+		var message=err.message   
+		\\配对失败时返回的错误信息，可以为"Bluetooth not enabled"或"
+		Bluetooth not initialized"或"Argument object not found"或
+		"Never connected to connection"或"Device isn't disconnected"或
+		"No connection address"。
+		
+		var name=err.name   \\配对的设备名称,可以没有
+		
+		var address=err.address   \\配对的蓝牙地址,可以没有
+	},
+	
+	\\参数
+	{ 
+		"address": "ECC037FD-72AE-AFC5-9213-CA785B3B5C63"   \\特定蓝牙设备的UUID  
+	}
+  );
+}
+
+		</pre>
+			
+	</div>
+</div>

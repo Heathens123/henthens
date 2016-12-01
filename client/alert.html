@@ -1,0 +1,68 @@
+<div class="com">
+	<h3>接口说明</h3>
+	<p>此接口主要提供系统UI相关的接口，alert,confirm,prompt。还提供系统提示声音，震动。点击按钮后，会返回对应的按钮下标，以1为起始.</p>
+
+	<pre class="prettyprint linenums order">
+YJH.H5Dialogs.alert(
+	Message,   \\弹窗的提示信息
+	completeCallback,   \\点击按钮后的回调信息
+	Title,   \\弹窗的标题
+	buttonLabel  \\按钮的提示信息确定或者取消，默认为确定
+)
+	</pre>
+
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>Message</li>
+			<li>YES</li>
+			<li>String</li>
+			<li>提示信息</li>
+		</ul>
+		<ul class="ul_con">
+			<li>completeCallback</li>
+			<li>NO</li>
+			<li>Function</li>
+			<li>点击按钮后的回调信息</li>
+		</ul>
+		
+		<ul class="ul_con">
+			<li>Title</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>标题</li>
+		</ul>
+		<ul class="ul_con">
+			<li>buttonLabel</li>
+			<li>YES</li>
+			<li>String</li>
+			<li>默认为确定</li>
+		</ul>
+	</div>
+	<div class="wrap2">
+		
+		<h3>调用实例:</h3>
+		<pre class="prettyprint linenums">
+document.addEventListener("deviceready",Deviceready(),false)
+			
+function Deviceready(){
+	YJH.H5Dialogs.alert(
+	"Message",   \\弹窗的提示信息
+	function(suc){   \\点击按钮后的回调信息
+		var status=suc.status,   \\点击按钮之后返回的状态
+		var des=suc.des,   \\点击按钮之后返回的状态描述
+		var result=suc.result   \\点击按钮之后返回的buttonIndex
+		},
+	"title",   \\弹窗的标题
+	"确定"   \\按钮的提示信息确定或者取消，默认为确定
+  )
+}			
+
+		</pre>
+	</div>
+</div>

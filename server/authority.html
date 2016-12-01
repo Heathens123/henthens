@@ -1,0 +1,109 @@
+<div class="com">
+	<h3>接口地址</h3>
+	<p>http://phr.care4u.cn/api/extra/rights.do</p>
+	
+
+	<div class="wrap1 wrapapp">
+		<ul class="contComon arguments">
+			<li class="widspc widspc1">传递参数</li>
+		</ul>
+		<ul class="contComon arguments">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>备注</li>
+		</ul>
+		<ul class="contComon arguments">
+			<li>token</li>
+			<li>NO</li>
+			<li>应用token</li>
+		</ul>
+		<ul class="contComon arguments">
+			<li>userToken</li>
+			<li>NO</li>
+			<li>用户token</li>
+		</ul>
+		<ul class="contComon arguments">
+			<li>code</li>
+			<li>YES</li>
+			<li>收费单元编码</li>
+		</ul>
+	</div>
+	
+	<div class="wrap1 wrapapp wrapjson">
+		<ul class="contComon rejson">
+			<li class="widspc widspc1">返回值json字符串</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li>字段名</li>
+			<li>备注</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li>return_code</li>
+			<li>返回状态码，SUCCESS/ FAIL</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li>return_msg</li>
+			<li>返回信息，如非空，为错误原因</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li class="widspc">以下字段在return_code为SUCCESS的时候有返回</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li>name</li>
+			<li>收费单元名称</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li>code</li>
+			<li>收费单元编码</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li>chargeType</li>
+			<li>收费类型(1计次  2计时)</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li>total</li>
+			<li>总次数</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li>use</li>
+			<li>使用次数</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li>expireTime</li>
+			<li>到期时间 </li>
+		</ul>
+	</div>
+	
+	
+	
+	<div class="wrap2">
+		<h3>返回值示例:</h3>
+		<pre class="prettyprint linenums order">
+{
+	"return_msg":"",
+	"data":[
+			   {
+				   	"total":50,
+				   	"expireTime":"",
+				   	"name":"按次收费",
+				   	"use":14,
+				   	"code":"N-79",
+				   	"chargeType":1
+			   	}, 
+			   {
+				   	"total":0,
+				   	"expireTime":"2017-05-17",
+				   	"name":"按时收费(天)",
+				   	"use":0,
+				   	"code":"M-79",
+				   	"chargeType":2
+			   	}
+		   ],
+	"return_code":"SUCCESS"
+}
+		</pre>
+		
+		
+	</div>
+</div>
+

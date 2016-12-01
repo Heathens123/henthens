@@ -1,0 +1,88 @@
+<div class="com">
+	<h3>接口说明 </h3>
+	<p>扫描蓝牙比较耗电，如果查找到想要的设备，则应该调用stopScan停止扫描.</p>
+	<pre class="prettyprint linenums order">
+YJH.BluetoothleManager.startScan(
+	startScanSuccess,   \\成功回调
+	startScanError,   \\失败回调
+	{   \\需要传递的参数
+		"services": UUID,   \\蓝牙服务UUID
+		"allowDuplicates": boolean   \\表示系统发现同一个设备时，重复返回信息.
+    }
+)
+	</pre>
+	
+	
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>services</li>
+			<li>YES</li>
+			<li>Array</li>
+			<li>需要查找的蓝牙服务UUID，如果为空数组，则查找所有设备</li>
+		</ul>
+		<ul class="ul_con">
+			<li>allowDuplicates</li>
+			<li>YES</li>
+			<li>bool</li>
+			<li>iOS设备专用，表示系统发现同一个设备时，重复返回信息，默认为false.</li>
+		</ul>
+	</div>
+	<div class="wrap2">
+		
+	<h3>调用实例:</h3>
+	<pre class="prettyprint linenums order">
+document.addEventListener("deviceready",Deviceready(),false)
+
+function Deviceready(){
+	YJH.BluetoothleManager.startScan(
+	
+	\\成功回调
+	function(succ){   
+		var status=succ[0].status,   \\表示开始扫描
+		var status2=succ[1].status,
+		var phone=succ[1].advertisement,   \\表示扫描出来的是安卓还是IOS
+		
+			\\安卓为"awArG05L"，
+			\\IOS为{
+			        serviceUuids": [ "180D"],
+			        "manufacturerData": "awAvFFZY",
+			        "txPowerLevel": 0,
+			        "overflowServiceUuids": [],
+			        "isConnectable": true,
+			        "solicitedServiceUuids": [],
+			        "serviceData": {},
+			        "localName": "Polar H7 3B321015"
+			     }
+	    var rssi=succ[1].rssi,
+	    var name=succ[1].name,
+	    var address=succ[1].address,
+	},
+	
+	\\失败回调
+	function(err){   
+		var error=err.error,   
+		\\扫描失败返回的状态，可能为"enable"或者"initialize"中的一种
+		
+		var message=err.message
+		\\扫描失败返回的错误信息，可能为"Bluetooth not enabled"或者
+		"Bluetooth not initialized"中的一种
+	},
+	
+	\\需要传递的参数
+	{          
+		"services": [ "180D", "180F" ],   \\蓝牙服务UUID
+		 "allowDuplicates": true   \\表示系统发现同一个设备时，重复返回信息.
+    }
+  )
+}
+
+	</pre>
+		
+	</div>
+</div>

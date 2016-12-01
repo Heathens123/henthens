@@ -1,0 +1,78 @@
+<div class="num3 com">
+	<h3>接口说明</h3>
+	<p>此方法为一个缓存图片方法，通过url链接返回图片，优先从本地获取图片，如果没有，则从网络获取，最后会转换成base64返回.</p>
+	<pre class="prettyprint linenums order">
+YJH.Cameramethod.fetchPic(
+	urls,  \\此参数为数组，表示图片的URl路径
+	completeCallback,   \\获取成功回调  
+	errCallback  \\获取失败回调
+);
+	</pre>
+	
+	
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>urls</li>
+			<li>NO</li>
+			<li>Array</li>
+			<li>此参数为数组，如果每一项中不包含http或者https则会默认为当前h5 app相对路径下的图片。只适用于离线应用.</li>
+		</ul>
+		<ul class="ul_con">
+			<li>completeCallback</li>
+			<li>NO</li>
+			<li>Function</li>
+			<li>获取成功回调</li>
+		</ul>
+		<ul class="ul_con">
+			<li>errCallback</li>
+			<li>NO</li>
+			<li>Function</li>
+			<li>获取失败回调</li>
+		</ul>
+	</div>
+	<div class="wrap2">
+		
+		<h3>调用实例:</h3>
+		<pre class="prettyprint linenums">
+document.addEventListener("deviceready",Deviceready(),false)
+function Deviceready(){
+	YJH.Cameramethod.fetchPic(
+	["http://imageUrl.com"],    \\图片的Url地址
+	
+	\\获取成功回调
+	function(suc){   
+		var status=suc.status,   
+		\\获取成功的状态,成功为0
+		
+		var des=suc.des,   
+		\\获取成功的状态，成功为success
+		
+		var result=suc.result  
+		\\获取成功返回的结果，成功返回图片的base64字串
+	},
+	
+	\\获取失败回调
+	function(err){   
+		var status=err.status,   
+		\\获取失败的状态，失败为1
+		
+		var des=err.des,   
+		\\获取失败的状态，失败为error
+		
+		var result=err.result  
+		\\获取失败返回的结果，失败返回 :
+		"Could not connect to the server."
+	}
+  );
+}
+
+		</pre>
+		
+	</div>
+</div>

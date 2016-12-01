@@ -1,0 +1,42 @@
+<div class="com">
+	<h3> 接口说明</h3>
+	<pre class="prettyprint linenums order">
+YJH.BluetoothleManager.isInitialized(
+	isInitCallBack   \\回调 函数 
+);
+	</pre>
+	
+	<!--<pre class="prettyprint linenums order">YJH.BluetoothleManager.isInitialized(function(succ){});</pre>-->
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>无</li>
+			<li>无</li>
+			<li>无</li>
+			<li>无</li>
+		</ul>
+		
+	</div>
+	<div class="wrap2">
+		<h3>调用实例:</h3>
+		<pre class="prettyprint linenums order">
+document.addEventListener("deviceready",Deviceready(),false) 
+
+function  Deviceready(){
+	YJH.BluetoothleManager.isInitialized(
+     \\回调 函数 
+	function(succ){
+		var isInitialized=succ.isInitialized   \\值为true / false.
+	}
+  );
+}
+
+		</pre>
+		
+	</div>
+</div>

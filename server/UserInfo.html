@@ -1,0 +1,87 @@
+<div class="com">
+	<h3>接口地址</h3>
+	<p>http://phr.care4u.cn/api/user/info.do</p>
+	
+
+	<div class="wrap1 wrapapp">
+		<ul class="contComon arguments">
+			<li class="widspc widspc1">传递参数</li>
+		</ul>
+		<ul class="contComon arguments">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>备注</li>
+		</ul>
+		<ul class="contComon arguments">
+			<li>token</li>
+			<li>NO</li>
+			<li>应用token</li>
+		</ul>
+		<ul class="contComon arguments">
+			<li>userToken</li>
+			<li>NO</li>
+			<li>用户token</li>
+		</ul>
+	</div>
+	
+	<div class="wrap1 wrapapp wrapjson">
+		<ul class="contComon rejson">
+			<li class="widspc widspc1">返回值json字符串</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li>字段名</li>
+			<li>备注</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li>return_code</li>
+			<li>返回状态码，SUCCESS/ FAIL</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li>return_msg</li>
+			<li>返回信息，如非空，为错误原因</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li class="widspc">以下字段在return_code为SUCCESS的时候有返回</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li>account</li>
+			<li>登录名</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li>unionid</li>
+			<li>第三方应用用户id</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li>name</li>
+			<li>姓名</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li>phone</li>
+			<li>手机</li>
+		</ul>
+		<ul class="contComon rejson">
+			<li>headimg</li>
+			<li>头像</li>
+		</ul>
+	</div>
+	
+	
+	
+	<div class="wrap2">
+		<h3>返回值示例:</h3>
+		<pre class="prettyprint linenums order">
+{
+	"return_msg":"",
+	"return_code":"SUCCESS",
+	"name":"",
+	"phone":"" ,
+	"account":"",
+	"unionid":""
+	"headimg":""
+}
+		</pre>
+		
+		
+	</div>
+</div>
+

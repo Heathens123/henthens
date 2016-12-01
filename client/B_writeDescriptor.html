@@ -1,0 +1,161 @@
+<div class="com">
+	<h3>接口说明</h3>
+	<p>在iOS端不能向特征的配置描述写数据.</p>
+	<pre class="prettyprint linenums order">
+YJH.BluetoothleManager.writeDescriptor(
+	writeDescriptorSuccess,   \\成功回调 
+	writeDescriptorError,   \\失败回调 
+	{ 
+		"address": "addressUUID ",   \\蓝牙UUID 
+		"service": "serviceUUID",   \\服务UUID
+		"characteristic": "characteristicUUID"   \\特征UUID
+		"descriptor": "descriptorUUID"   \\描述UUID
+		"value":"WriteValue"   \\写入的值base64编码
+		"type":"WriteType"   \\写入的类型
+	}
+);
+	</pre>
+	
+	<!--<pre class="prettyprint linenums order">
+YJH.BluetoothleManager.writeDescriptor(
+	function(succ){},
+	function(err){}, 
+	{
+		"service":"180D",
+		"characteristic":"2A37",
+		"descriptor":"2902",
+		"value":"AQAAAAAAAAA=",
+		"address":"ABC123"
+	}
+);
+	</pre>-->
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>address</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>蓝牙UUID</li>
+		</ul>
+		<ul class="ul_con">
+			<li>service</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>服务UUID</li>
+		</ul>
+		<ul class="ul_con">
+			<li>characteristic</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>特征UUID</li>
+		</ul>
+		<ul class="ul_con">
+			<li>descriptor</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>描述UUID</li>
+		</ul>
+		<ul class="ul_con">
+			<li>value</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>写入的值base64编码</li>
+		</ul>
+		<ul class="ul_con">
+			<li>type</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>写入类型，包括response和noResponse.</li>
+		</ul>
+	</div>
+	<div class="wrap2">
+		<h3>调用实例:</h3>
+		<pre class="prettyprint linenums order">
+			
+document.addEventListener("deviceready",Deviceready(),false) 
+
+function  Deviceready(){
+	YJH.BluetoothleManager.writeDescriptor(
+	\\成功回调
+	function(succ){    
+		var status=succ.status   
+		\\写入成功后返回的status；值为"writeDescriptor"
+		
+		var service=succ.service   
+		\\写入成功后返回的特定服务UUID。如"180d"
+		
+		var characteristic=succ.characteristic   
+		\\写入成功后返回的特征的UUID。如"2a37"
+		
+		var descriptor=succ.descriptor   
+		\\写入成功返回的描述UUID。如"2902"
+		
+		var value=succ.value   
+		\\写入成功返回的写入的值。如"AQAAAAAAAAA="
+		
+		var address=succ.address   
+		\\写入成功返回的蓝牙UUID，如"ABC123"
+	},
+	
+	\\失败回调
+	function(err){   
+		var error=err.error
+		\\返回写入失败时的状态，值为"enable"或"initialize"或"arguments"或
+		"connect"或"neverConnected"或"service"或"characteristic"或
+		"descriptor"或"readDescriptor"。
+		
+		var message=err.message 
+		\\返回写入失败时的错误信息，值为"Bluetooth not enabled"或
+		"Bluetooth not initialized"或"Argument object not found"或
+		"No connection address"或"Never connected to connection"或
+		"Service not found"或"Characteristic not found"或
+		"Descriptor not found"或"系统返回的错误信息"。
+		
+		var name=err.name   
+		\\成功后返回配对的设备名称,此项可以没有
+		
+		var address=err.address   
+		\\成功后返回配对的蓝牙UUID,此项可以没有
+	}, 
+	
+	\\参数
+	{
+		"service":"180D",   \\服务UUID 
+		"characteristic":"2A37",   \\特征UUID
+		"descriptor":"2902",   \\描述UUID
+		"value":"AQAAAAAAAAA=",   \\写入的值base64编码
+		"address":"ABC123"   \\蓝牙UUID 
+	}
+  );
+}
+
+		</pre>
+	</div>
+</div>
+
+
+
+		<!--<h3>成功返回值:</h3>
+			{
+			  "status": "writeDescriptor",
+			  "service": "180D",
+			  "characteristic": "2A37",
+			  "descriptor": "2902",
+			  "value": "AQAAAAAAAAA=",
+			  "address": "ABC123"
+			}
+		<h3>失败返回值:</h3>
+		{“error” : “enable”,“message” : “Bluetooth not enabled” }
+		{“error” : “initialize”,“message” : “Bluetooth not initialized” }
+		{“error” : “arguments”,“message” : “Argument object not found” }
+		{“error” : “connect”,“message” : “No connection address” }
+		{“error” : “neverConnected”,“message”:” Never connected to connection"}
+		{“error” : “service”,“message”:” Service not found",“name”:”xxxx”,“address”:”xxxx”,}
+		{“error” : “characteristic”,“message”:” Characteristic not found",“name”:”xxxx”,“address”:”xxxx”,}
+		{“name” : “xxx”,“address” :”xxxx”,“error” : “descriptor”,“message”:” Descriptor not found"}
+		{“error” : “readDescriptor”,“message”:系统返回的错误信息,}-->

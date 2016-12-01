@@ -1,0 +1,85 @@
+<div class="com">
+<h3>接口说明</h3>
+	<pre class="prettyprint linenums order">
+YJH.BluetoothleManager.services(
+	servicesSuccess,   \\成功回调 
+	servicesError,   \\失败回调
+	{
+		"address": "UUID",   \\特定蓝牙设备的UUID
+		"services": []   \\服务的筛选数组
+	}
+);
+	</pre>
+	
+	
+<div class="wrap1">
+	<ul class="ul_con">
+		<li>参数</li>
+		<li>可为空</li>
+		<li>参数类型</li>
+		<li>备注</li>
+	</ul>
+	<ul class="ul_con">
+		<li>address</li>
+		<li>NO</li>
+		<li>String</li>
+		<li>特定蓝牙设备的UUID</li>
+	</ul>
+	<ul class="ul_con">
+		<li>services</li>
+		<li>YES</li>
+		<li>Array</li>
+		<li>服务的筛选数组</li>
+	</ul>
+</div>
+<div class="wrap2">
+	<h3>调用实例:</h3>
+	<pre class="prettyprint linenums order">
+document.addEventListener("deviceready",Deviceready(),false)
+
+function  Deviceready(){
+	YJH.BluetoothleManager.services(
+	\\成功回调
+	function(succ){   
+		var status=succ.status   
+		\\获取成功返回的连接状态，如"services"
+		
+		var services=succ.services   
+		\\获取成功返回的services,值为:
+		[ "180d", "180a", "180f", "6217ff4b-fb31-1140-ad5a-a45545d7ecf3" ]
+		
+		var name=succ.name   
+		\\获取成功返回的设备名称。如"Polar H7 3B321015"
+		
+		var address=succ.address   
+		\\获取成功返回的设备地址，如"ECC037FD-72AE-AFC5-9213-CA785B3B5C63"
+	}, 
+	
+	\\失败回调
+	function(err){   
+		var error=err.error
+		\\返回关闭失败时的状态，可以为"enable"或"initialize"或
+		"arguments"或"connect"或"neverConnected"或"services"。
+		
+		var message=err.message 
+		\\返回关闭失败时的错误信息，可以为"Bluetooth not enabled"或
+		"Bluetooth not initialized"或"Argument object not found"或
+		"No connection address"或"Never connected to connection"或
+		"系统返回的错误信息"。
+	},
+	
+	\\参数
+	{
+		"address": "ECC037FD-72AE-AFC5-9213-CA785B3B5C63",
+		\\特定蓝牙设备的UUID
+		
+		"services": []   \\服务的筛选数组
+	}
+  );
+} 
+
+	</pre>
+	
+	
+</div>
+</div>

@@ -1,0 +1,36 @@
+<div class="num2 com">
+<h3>接口说明</h3>
+<p>将base64格式图片保存到设备的相册，此方法没有任何回调，执行后默认为成功.</p>
+<pre class="prettyprint linenums order">
+YJH.Cameramethod.savepic(
+	picData   \\图片的base64字串,不可为空
+);
+	</pre>
+
+<div class="wrap1">
+	<ul class="ul_con">
+		<li>参数</li>
+		<li>可为空</li>
+		<li>参数类型</li>
+		<li>备注</li>
+	</ul>
+	<ul class="ul_con">
+		<li>picData</li>
+		<li>NO</li>
+		<li>String</li>
+		<li>图片的base64字串</li>
+	</ul>
+</div>
+<div class="wrap2">
+	<h3>调用实例:</h3>
+<pre class="prettyprint linenums order">
+document.addEventListener(
+	"deviceready",
+	YJH.Cameramethod.savepic("base64字串"),
+	false
+)
+	;
+</pre>
+	
+</div>
+</div>

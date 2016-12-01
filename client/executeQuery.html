@@ -1,0 +1,95 @@
+<div class="com">
+	<h3> 接口说明</h3>
+	<p>执行SQL查询语句，系统会将结果封装成一个数组，数组中的每个对象，属性为数据库列名。</p>
+	<pre class="prettyprint linenums order">
+YJH.H5Database.executeQuery(
+	querySuccess,   \\执行成功后的回调
+	queryFailed,   \\执行失败后的回调
+	Sql   \\Sql语句
+)
+	</pre>
+
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>querySuccess</li>
+			<li>YES</li>
+			<li>Function</li>
+			<li>执行成功后的回调</li>
+		</ul>
+		<ul class="ul_con">
+			<li>queryFailed</li>
+			<li>YES</li>
+			<li>Function</li>
+			<li>执行失败后的回调</li>
+		</ul>
+		<ul class="ul_con">
+			<li>Sql</li>
+			<li>NO</li>
+			<li>Object</li>
+			<li>sqlString: sql查询语句</li>
+		</ul>
+		<ul class="ul_con">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li>Arguments:查询条件值.</li>
+		</ul>
+	</div>
+	<div class="wrap2">
+		
+		<h3>调用实例:</h3>
+		<pre class="prettyprint linenums">
+document.addEventListener("deviceready",Deviceready(),false)
+
+function Deviceready(){
+	YJH.H5Database.executeQuery(
+    \\执行SQL成功回调
+	function(suc){  
+		var status=succ.status,   
+		\\成功执行的状态，成功返回0
+		
+		var des=succ.des,   
+		\\成功执行的状态描述，成功返回"executeQuery success"
+		
+		var result=succ.result   
+		\\成功执行的结果，成功返回:
+		[ 
+			{
+				Address: "Xuanwumen 10",
+			    City: "Beijing",
+			    FirstName: "Bill",
+			    Id_P: 10, 
+			    LastName: "Gates"
+		   }
+		]
+	},
+	
+	\\执行SQL失败回调
+	function(err){   
+		var status=err.status,   
+		\\执行失败的状态，失败返回1
+		
+		var des=err.des,   
+		\\执行失败的状态描述，失败返回"executeSql failed"
+		
+		var result=err.result   
+		\\执行失败的结果，失败返回:
+		"Error Domain=FMDatabase Code=1 \"no such table: Per…fo=
+		{NSLocalizedDescription=no such table: Person}"
+	},
+	
+	{"sqlString":"SELECT * FROM Persons"}
+  )
+}
+
+			
+		</pre>
+		
+	</div>
+</div>

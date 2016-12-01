@@ -1,0 +1,72 @@
+<div class="com">
+	<h3>注意事项</h3>
+	<p>在写APP页面时，页面的头部要引入meta标签：<span class="Meta"></span></p>
+	<h3>其中： </h3>
+	<h3>width</h3>
+	<p>控制 viewport 的大小，可以指定的一个值或者特殊的值，如 device-width 为设备的宽度（单位为缩放为 100% 时的 CSS 的像素）</p>
+	<h3>initial-scale</h3>
+	<p>初始缩放。即页面初始缩放程度。这是一个浮点值，是页面大小的一个乘数。例如，如果你设置初始缩放为“1.0”，那么，web页面在展现的时候就会以屏幕像素密度分辨率的1:1来展现。如果你设置为“2.0”，那么这个页面就会放大为2倍。</p>
+	<h3>minimum-scale</h3>
+	<p>允许用户缩放到的最小比例，范围从0到10.0</p>
+	<h3>maximum-scale</h3>
+	<p>最大缩放。即允许的最大缩放程度。这也是一个浮点值，用以指出页面大小与屏幕大小相比的最大乘数。例如，如果你将这个值设置为“2.0”，那么这个页面与屏幕大小相比，最多能放大2倍。范围从0到10.0</p>
+	<h3>user-scalable</h3>
+	<p>用户调整缩放。即用户是否能改变页面缩放程度。如果设置为yes则是允许用户对其进行改变，反之为no。默认值是yes。如果你将其设置为no，那么minimum-scale 和 maximum-scale都将被忽略，因为根本不可能缩放。</p>
+	<h3 style="margin-top: 20px;">接口使用方法</h3>
+	<p>所有的接口方法在deviceready事件执行之后执行,例如下面这个扫描蓝牙设备的接口方法:</p>
+	<pre class="prettyprint linenums order">
+		
+document.addEventListener("deviceready",Deviceready(),false)
+function Deviceready(){
+	YJH.BluetoothleManager.startScan(
+	
+		\\成功回调
+		function(succ){   
+			var status=succ[0].status,   
+			\\表示开始扫描
+			
+			var status2=succ[1].status,
+			
+			var phone=succ[1].advertisement,   
+			\\表示扫描出来的是安卓还是IOS
+			
+			\\安卓为"awArG05L",
+			\\IOS为{
+			        serviceUuids": [ "180D"],
+			        "manufacturerData": "awAvFFZY",
+			        "txPowerLevel": 0,
+			        "overflowServiceUuids": [],
+			        "isConnectable": true,
+			        "solicitedServiceUuids": [],
+			        "serviceData": {},
+			        "localName": "Polar H7 3B321015"
+			     }
+		    var rssi=succ[1].rssi,
+		    var name=succ[1].name,
+		    var address=succ[1].address,
+		},
+		
+		\\失败回调
+		function(err){   
+			var error=err.error,   
+			\\扫描失败返回的状态，可能为"enable"或者"initialize"
+			
+			var message=err.message
+			\\扫描失败返回的错误信息，可能为"Bluetooth not enabled"或者
+			"Bluetooth not initialized"
+		},
+		
+		\\需要传递的参数
+		{          
+			"services": [ "180D", "180F" ],   
+			\\蓝牙服务UUID
+			
+			 "allowDuplicates": true   
+			 \\表示系统发现同一个设备时，重复返回信息.
+	    }
+	)
+}
+	</pre>
+</div>
+
+

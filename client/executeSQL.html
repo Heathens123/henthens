@@ -1,0 +1,90 @@
+<div class="com">
+	<h3>接口说明</h3>
+	<p>每个app都有一个独有的数据库，每个应用都可以创建自己的表，存储特有的数据，支持存储二进制数据，
+		接口只支持sql的语句，包括创建表，增删查改。接口将sql语句的查询和其他语句分开成两个接口，方便调用。
+	此方法只支持除了查询语句之外的操作，如果此语句执行查询语句，虽然不会引起崩溃，但是不会返回任何结果。
+	</p>
+	<pre class="prettyprint linenums order">
+YJH.H5Database.executeSQL(
+	executeSuccess,   \\执行成功后的回调
+	executeFailed,   \\执行失败后的回调
+	Sql   \\Sql语句
+)
+	</pre>
+	
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>executeSuccess</li>
+			<li>YES</li>
+			<li>Function</li>
+			<li>执行成功后的回调</li>
+		</ul>
+		<ul class="ul_con">
+			<li>executeFailed</li>
+			<li>YES</li>
+			<li>Function</li>
+			<li>执行失败后的回调</li>
+		</ul>
+		<ul class="ul_con">
+			<li>Sql</li>
+			<li>NO</li>
+			<li>Object</li>
+			<li>Sql语句</li>
+		</ul>
+	</div>
+	<div class="wrap2">
+		<h3>调用实例:</h3>
+		<pre class="prettyprint linenums">
+document.addEventListener("deviceready",Deviceready(),false)
+
+function  Deviceready(){
+	YJH.H5Database.executeSQL(
+	\\成功回调
+	function(succ){   
+		var status=succ.status,   
+		\\执行数据库语句executeSQL的状态，返回0表示成功
+		
+		var des=succ.des,   
+		\\执行数据库语句executeSQL状态的描述，成功为"executeSql success"
+		
+		var result=succ.result   
+		\\执行数据库语句executeSQL返回的结果，成功为""空字串
+	},
+	
+	\\失败回调
+	function(err){   
+		var status=err.status,   
+		\\执行数据库语句executeSQL的状态，返回1表示失败
+		
+		var des=err.des,   
+		\\执行数据库语句executeSQL状态的描述，失败为"executeSql failed"
+		
+		var result=err.result   
+		\\执行数据库语句executeSQL返回的结果，失败为
+		"{Error Domain=FMDatabase Code=1 \"table Persons 
+		alre…ocalizedDescription=table Persons already exists}"
+	},
+	
+	\\Sql语句
+	{
+		"sqlString":"CREATE TABLE Persons(
+		Id_P int,
+		LastName varchar(255),
+		FirstName varchar(255),
+		Address varchar(255),
+		City varchar(255)
+		)"
+	}
+  )
+}
+
+		</pre>
+		
+	</div>
+</div>

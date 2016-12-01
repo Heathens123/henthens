@@ -1,0 +1,103 @@
+<div class="com">
+	<h3>接口说明</h3>
+	<pre class="prettyprint linenums order">
+YJH.H5Dialogs.confirm(
+	Message,   \\弹窗的提示信息
+	completeCallback,   \\点击按钮后的回调信息
+	Title   \\弹窗的标题
+)
+或
+YJH.H5Dialogs.confirm(
+	Message,   \\弹窗的提示信息
+	completeCallback,   \\点击按钮后的回调信息
+	Title,   \\弹窗的标题
+	buttonLables   \\按钮数组
+)
+	</pre>
+	
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>Message</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>提示信息</li>
+		</ul>
+		<ul class="ul_con">
+			<li>completeCallback</li>
+			<li>NO</li>
+			<li>Function</li>
+			<li>按钮返回回调</li>
+		</ul>
+		
+		<ul class="ul_con">
+			<li>Title</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>标题</li>
+		</ul>
+		<ul class="ul_con">
+			<li>buttonLabel</li>
+			<li>YES</li>
+			<li>Array</li>
+			<li>按钮数组，可包含多个,默认为[确认，取消]</li>
+		</ul>
+	</div>
+	<div class="wrap2">
+		
+		<h3>调用实例:</h3>
+	<pre class="prettyprint linenums">
+document.addEventListener("deviceready",Deviceready(),false)
+function Deviceready(){
+	YJH.H5Dialogs.confirm(
+	"Message",   
+	\\弹窗的提示信息
+	
+	\\点击按钮后的回调信息
+	function(suc){   
+		var status=suc.status,   
+		\\点击按钮之后返回的状态
+		
+		var des=suc.des,   
+		\\点击按钮之后返回的状态描述
+		
+		var result=suc.result   
+		\\点击按钮后返回按钮在按钮数组中的的索引值
+		},
+		
+	"title"   \\弹窗的标题
+	)
+	
+	或
+	
+	YJH.H5Dialogs.confirm(
+		"Message",   
+		\\弹窗的提示信息
+		
+		\\点击按钮后的回调信息
+		function(suc){   
+			var status=suc.status,   
+			\\点击按钮之后返回的状态
+			
+			var des=suc.des,   
+			\\点击按钮之后返回的状态描述
+			
+			var result=suc.result   
+			\\点击按钮后返回按钮在按钮数组中的的索引值
+			},
+			
+		"title",   \\弹窗的标题
+		
+		["sure","Ok","Cancel"]   
+		\\按钮数组，可包含多个,默认为[确认，取消]
+	)
+}
+
+	</pre>
+	</div>
+</div>

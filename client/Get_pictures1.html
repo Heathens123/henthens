@@ -1,0 +1,116 @@
+
+	<div class="num1 com">
+	<h3>接口说明</h3>
+	<p>图像接口，主要用于从设备的相机或者相册或者本地获取图片，也负责下载，和缓存图片。从设备相机或者相册获取图片，图片会转换成base64格式，且每次只能选取一张图片。</p>
+	<pre class="prettyprint linenums order">
+YJH.Cameramethod.control(
+	uploadurl,  \\要上传的图片的Url地址
+	completeCallback,   \\选取图片后的回调函数
+	Type,   \\图片选取器类型
+	Width   \\选取图片的宽度。
+);
+	</pre>
+	
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		
+		<ul class="ul_con">
+			<li>uploadurl</li>
+			<li>YES</li>
+			<li>String</li>
+			<li>指定上传链接，如果为空，则不会进行上传操作。</li>
+		</ul>
+		<ul class="ul_con">
+			<li>completeCallback</li>
+			<li>NO</li>
+			<li>Function</li>
+			<li>选取图片后的回调，成功，失败，以及上传服务器的进度都会通过此返回。</li>
+		</ul>
+		<ul class="ul_con">
+			<li>Type</li>
+			<li>NO</li>
+			<li>Int</li>
+			<li>图片选取器类型，0为相册，1为照相机.</li>
+		</ul>
+		<ul class="ul_con">
+			<li>Width</li>
+			<li>YES</li>
+			<li>Int</li>
+			<li>选取图片的宽度，系统会根据这个宽度，对图片进行自动缩放。如果传入0或者不传入，则返回默认大小。</li>
+		</ul>
+		
+	</div>
+	<div class="wrap2">
+		
+		<h3>调用实例:</h3>
+		<pre class="prettyprint linenums">
+\\接口方法在这里执行
+document.addEventListener("deviceready",Deviceready(),false)
+
+function Deviceready(){
+	YJH.Cameramethod.control(
+	"http://www.uploadUrl.com",   
+	\\上传的图片的Url地址,没有上传Url为空
+	
+	function(state){
+		var status=state.status,  
+		\\status表示上传状态,为0时表示上传成功,为1时表示上传失败
+		
+		var des=state.des,   
+		\\des表示上传的状态,为success时表示没有上传或者上传成功的状态,
+		为failed时表示上传失败的状态
+		
+		var state=state.result.state   
+		\\state表示返回的状态，为1时表示，为0时表示
+		
+		var result=state.result   
+		\\result表示上传返回的结果，成功分为四种状态:
+		{state: 0, result:”base64字串”}
+		{state: 1, result: 25.48214507900958}
+		{state: 1, result: 100}
+		{state: 1, result: “服务器返回”}
+		失败时返回: "用户取消选择图片"
+	},
+	
+	0,   \\图片选取器类型，0为相册，1为照相机.
+	
+	0    \\选取图片的宽度，系统会根据这个宽度，
+	    对图片进行自动缩放。如果传入0或者不传入，则返回默认大小。
+  );
+}
+
+	
+
+		</pre>
+		
+		<!--<h3>上传失败:</h3>
+		<pre class="prettyprint linenums">
+YJH.Cameramethod.control(
+	"http://www.uploadUrl.com",
+	\\上传链接的Url地址
+	
+	function(state){  
+		var status=state.status,  
+		\\为1时表示上传失败
+		
+		var des=state.des,   
+		\\des表示上传的状态,为failed时表示上传失败的状态
+		
+		var result=state.result   
+		\\返回"用户取消选择图片"
+	},
+	
+	0,   \\图片选取器类型，0为相册，1为照相机.
+	
+	0    \\选取图片的宽度，系统会根据这个宽度，
+	    对图片进行自动缩放。如果传入0或者不传入，则返回默认大小。
+);
+		</pre>-->
+	</div>
+</div>
+

@@ -1,0 +1,42 @@
+						
+<div class="com">
+	<h3>接口说明</h3>
+	<p>方便应用对app进行管理，包括打开新页面，关闭页面，设置导航栏按钮，以及请求支付。</p>
+
+	<pre class="prettyprint linenums order">
+	YJH. H5ModuleManager.openWebInApp(
+		url   \\打开网页的绝对地址，包括了http头。如"http://192.168.1.3"
+	);
+	</pre>
+	
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>url</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>打开网页的绝对地址，包括了http头。</li>
+		</ul>
+		
+	</div>
+	<div class="wrap2">
+		<h3>调用实例:</h3>
+		<pre class="prettyprint linenums order">
+document.addEventListener(
+	"deviceready",
+	YJH. H5ModuleManager.openWebInApp("http://192.168.1.3"),
+	false
+) 
+		</pre>
+		<h3>返回值:</h3>
+		<p>
+			无
+		</p>
+		
+	</div>
+</div>

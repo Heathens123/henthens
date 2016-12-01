@@ -1,0 +1,93 @@
+<div class="com">
+	<h3>接口说明</h3>
+	<p>此接口只有一个参数，它是一个字典，字典里面包括的详细键值对，如下</p>
+	<pre class="prettyprint linenums order">
+YJH. H5ModuleManager.requestPayment(
+	PayCallBack   \\回调函数
+	{
+		"userId":xxxx,   \\用户id
+		"cid":xxxx,   \\商品id
+		"subject":xxxx,   \\商品名称
+		"totalFee":xxxx,   \\总金额
+		"token":xxxx   \\用户验证token
+	}
+);
+	</pre>
+	
+	<!--<pre class="prettyprint linenums order">
+YJH. H5ModuleManager.requestPayment(
+	function(res){console.log(res)},
+	{
+		"userId":xxxx,
+		"cid":xxxx,
+		"subject":xxxx,
+		"totalFee":xxxx,
+		"token":xxxx
+	}
+);
+	</pre>-->
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>userId</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>用户id</li>
+		</ul>
+		<ul class="ul_con">
+			<li>cid</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>商品id</li>
+		</ul>
+		<ul class="ul_con">
+			<li>subject</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>商品名称</li>
+		</ul>
+		<ul class="ul_con">
+			<li>totalFee</li>
+			<li>NO</li>
+			<li>Float</li>
+			<li>总金额</li>
+		</ul>
+		<ul class="ul_con">
+			<li>token</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>用户验证token</li>
+		</ul>
+	</div>
+	<div class="wrap2">
+		
+		<h3>调用实例:</h3>
+		<pre class="prettyprint linenums order">
+document.addEventListener("deviceready",Deviceready(),false) 
+
+function  Deviceready(){
+	YJH. H5ModuleManager.requestPayment(
+		\\回调函数
+		function(res){
+			console.log(res)
+		},
+		
+		\\参数
+		{
+			"userId":xxxx,   \\用户id
+			"cid":xxxx,   \\商品id
+			"subject":xxxx,   \\商品名称
+			"totalFee":xxxx,   \\总金额
+			"token":xxxx   \\用户验证token
+		}
+	);
+}
+	
+		</pre>
+	</div>
+</div>

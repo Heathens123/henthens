@@ -1,0 +1,75 @@
+<div class="com">
+	<h3>接口说明</h3>
+	<p>当用户的token信息过期时，可以调用reLogin重新获取token.</p>
+	<pre class="prettyprint linenums order">
+YJH.H5NativeAppInfo.reLogin(
+	successHander,   \\成功回调
+	failedHander   \\失败回调
+);
+	</pre>
+	
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>successHander</li>
+			<li>NO</li>
+			<li>Function</li>
+			<li>成功回调</li>
+		</ul>
+		<ul class="ul_con">
+			<li>failedHander</li>
+			<li>NO</li>
+			<li>Function</li>
+			<li>失败回调</li>
+		</ul>
+		
+	</div>
+	<div class="wrap2">
+		
+		<h3>调用实例:</h3>
+		<pre class="prettyprint linenums order">
+document.addEventListener("deviceready",Deviceready(),false)
+
+function Deviceready(){
+	YJH.H5NativeAppInfo.reLogin(
+	\\成功回调
+	function(succ){   
+		var status=succ.status,   
+		\\登录成功返回的状态，成功返回0
+		
+		var des=succ.des,   
+		\\登录成功返回的状态描述，成功返回"success"
+		
+		var UserToken=succ.result.UserToken   
+		\\登录成功返回的UserToken，成功返回一个字符串比如:
+		"d0c391a116cf57c69072b0a015d55368"
+		
+		var UserInfo=succ.result.UserInfo   
+		\\登陆成功返回用户的个人信息，如用户的账户信息等:
+		{account: "18583702682", isReal: 0, areaName: "", 
+		clientType: 0, appType: 2,等}
+	},
+	
+	\\失败回调
+	function(err){   
+		var status=succ.status,   
+		\\登录失败返回的状态，失败返回1
+		
+		var des=succ.des,   
+		\\登录失败返回的状态描述，失败返回"failed"
+		
+		var result=succ.result   
+		\\登录失败返回的结果，失败返回 "用户取消登录"
+	}
+  );
+}
+
+		</pre>
+		
+	</div>
+</div>

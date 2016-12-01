@@ -1,0 +1,87 @@
+<div class="com">
+	<h3>接口说明.</h3>
+	<p>此方法主要用于设置所有应用都可以访问的数据，通过getValue来获取，注意，不能使用key为appVersion，userInfo，userToken。因为主APP会使用者三个键，避免冲突，系统做了区分。</p>
+	<pre class="prettyprint linenums order">
+YJH.H5ModuleManager.setValueForKey(
+	successCallBack,   \\成功回调
+	FailedCallBack,   \\失败回调
+	key,   \\key
+	Value   \\需要保存的值
+)
+	</pre>
+	
+	
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>successCallBack</li>
+			<li>NO</li>
+			<li>Function</li>
+			<li>成功回调</li>
+		</ul>
+		<ul class="ul_con">
+			<li>FailedCallBack</li>
+			<li>NO</li>
+			<li>Function</li>
+			<li>失败回调</li>
+		</ul>
+		<ul class="ul_con">
+			<li>key</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>key</li>
+		</ul>
+		<ul class="ul_con">
+			<li>Value</li>
+			<li>NO</li>
+			<li title="String,Array或者字典,或者对象">String,Array或者字典,或者对象</li>
+			<li>需要保存的值</li>
+		</ul>
+	</div>
+	<div class="wrap2">
+		
+		<h3>调用实例:</h3>
+		<pre class="prettyprint linenums order">
+			
+document.addEventListener("deviceready",Deviceready(),false)
+
+function Deviceready(){
+	YJH.H5ModuleManager.setValueForKey(
+	\\成功回调
+	function(suc){
+		var status=suc.status,   
+		\\设置成功返回的状态，成功返回0
+		
+		var des=suc.des,   
+		\\设置成功返回的状态描述，成功返回"Success"
+		
+		var result=suc.result   
+		\\设置成功返回的结果，成功返回""
+	},
+	
+	\\失败回调
+	function(err){
+		var status=err.status,   
+		\\设置失败返回的状态，失败返回-1
+		
+		var des=err.des,   
+		\\设置失败返回的状态描述，失败返回 "value is cannot be nil"
+		
+		var result=err.result   
+		\\设置失败返回的结果，失败返回""
+	},
+	
+	"key",   \\key
+	
+	"value"   \\需要保存的值
+  )
+}
+
+		</pre>
+	</div>
+</div>

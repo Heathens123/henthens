@@ -1,0 +1,56 @@
+<div class="com">
+	<h3> 接口说明</h3>
+	<p>停止扫描蓝牙设备，因为扫描设备相对来说比较耗电，所以当发现我们想要的设备后，请调用此方法，停止扫描。</p>
+	<pre class="prettyprint linenums order">
+YJH.BluetoothleManager.stopScan(
+	stopScanSuccess,   \\成功回调
+	stopScanError   \\失败回调
+);
+	</pre>
+	
+
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>无</li>
+			<li>无</li>
+			<li>无</li>
+			<li>无</li>
+		</ul>
+		
+	</div>
+	<div class="wrap2">
+		
+		<h3>调用实例:</h3>
+<pre class="prettyprint linenums order">
+document.addEventListener("deviceready",Deviceready(),false)
+
+function Deviceready(){
+	YJH.BluetoothleManager.stopScan(
+	
+		\\成功回调
+		function(succ){   
+			var status=succ.status   \\成功时返回的状态
+		}, 
+		
+		\\失败回调
+		function(err){   
+			var error=err.error   
+			\\失败时返回的状态，可能的值为"enable"或者"initialize"或者"startScan";
+			
+			var message=err.message  
+			\\失败时返回的错误信息，可能的值为"Bluetooth not enabled"或者
+			"Bluetooth not initialized"或者"Not scanning"
+		}
+	);
+}
+
+</pre>
+		
+	</div>
+</div>

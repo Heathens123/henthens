@@ -1,0 +1,153 @@
+<div class="com">
+	<h3>接口说明 </h3>
+	<pre class="prettyprint linenums order">
+YJH.BluetoothleManager.readDescriptor(
+	readDescriptorSuccess,   \\成功回调 
+	readDescriptorError,   \\失败回调 
+	{ 
+		"address": "addressUUID ",   \\蓝牙UUID 
+		"service": "serviceUUID",   \\服务UUID
+		"characteristic": "characteristicUUID"   \\特征UUID
+		"descriptor": "descriptorUUID"   \\描述UUID
+	}
+);
+	</pre>
+<!--	
+	<pre class="prettyprint linenums order">
+YJH.BluetoothleManager.readDescriptor(
+	function(succ){},
+	function(err){}, 
+	{ 
+		"address": "ECC037FD-72AE-AFC5-9213-CA785B3B5C63",
+		"service": "180d",
+		"characteristic": "2a37",
+		"descriptor": "2902" 
+	}
+);
+	</pre>-->
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>address</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>蓝牙UUID</li>
+		</ul>
+		<ul class="ul_con">
+			<li>service</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>服务UUID</li>
+		</ul>
+		<ul class="ul_con">
+			<li>characteristic</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>特征UUID</li>
+		</ul>
+		<ul class="ul_con">
+			<li>descriptor</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>描述UUID</li>
+		</ul>
+		
+	</div>
+	<div class="wrap2">
+		<h3>调用实例:</h3>
+		<pre class="prettyprint linenums order">
+document.addEventListener("deviceready",Deviceready(),false) 
+
+function  Deviceready(){
+	YJH.BluetoothleManager.readDescriptor(
+	 \\成功回调
+	function(succ){    
+		var status=succ.status   
+		\\获取成功后返回的status；值为"readDescriptor"
+		
+		var service=succ.service   
+		\\获取成功后返回的特定服务UUID。如"180d"
+		
+		var address=succ.address   
+		\\获取成功返回的蓝牙UUID，如"ECC037FD-72AE-AFC5-9213-CA785B3B5C63"
+		
+		var characteristic=succ.characteristic  
+		\\获取成功后返回的特征的UUID。如"2a37"
+		
+		var value=succ.value   
+		\\获取成功返回的写入的值。如"AQAAAAAAAAA="
+		
+		var name=succ.name   
+		\\获取成功返回的设备名称。如为"Polar H7 3B321015"
+		
+		var descriptor=succ.descriptor   
+		\\获取成功返回的描述UUID。如"2902"
+	},
+	
+	\\失败回调
+	function(err){   
+		var error=err.error
+		\\返回获取失败时的状态，值为"enable"或"initialize"或"arguments"或
+		"connect"或"neverConnected"或"service"或"characteristic"
+		或"descriptor"或"readDescriptor"。
+		
+		var message=err.message 
+		\\返回获取失败时的错误信息，值为"Bluetooth not enabled"或
+		"Bluetooth not initialized"或"Argument object not found"或
+		"No connection address"或"Never connected to connection"或
+		"Service not found"或"Characteristic not found"或
+		"Descriptor not found"或"系统返回的错误信息"。
+		
+		var name=err.name   
+		\\成功后返回配对的设备名称,此项可以没有
+		
+		var address=err.address   
+		\\成功后返回配对的蓝牙UUID,此项可以没有
+	},
+	
+	\\参数
+	{ 
+		"address": "ECC037FD-72AE-AFC5-9213-CA785B3B5C63",   \\蓝牙UUID 
+		"service": "180d",   \\服务UUID 
+		"characteristic": "2a37",   \\特征UUID 
+		"descriptor": "2902"   \\描述UUID 
+	}
+  );
+}
+
+		</pre>
+	</div>
+</div>
+
+
+
+
+
+
+	
+<!--		
+		<h3>成功返回值:</h3>
+			{
+			  "status": "readDescriptor",
+			  "service": "180d",
+			  "address": "ECC037FD-72AE-AFC5-9213-CA785B3B5C63",
+			  "characteristic": "2a37",
+			  "value": "AQAAAAAAAAA=",
+			  "name": "Polar H7 3B321015",
+			  "descriptor": "2902"
+			}
+		<h3>失败返回值:</h3>
+	{“error” : “enable”,                            “message” : “Bluetooth not enabled” }或 
+	{“error” : “initialize”,						“message” : “Bluetooth not initialized” }或
+	{“error” : “arguments”,							“message” : “Argument object not found”}或
+	{“error” : “connect”,							“message” : “No connection address” }或
+	{“error” : “neverConnected”,					“message”:” Never connected to connection"}或
+	{“error” : “service”,							“message”:” Service not found",           		“name”:”xxxx”,“address”:”xxxx”,}或
+    {“error” : “characteristic”,					“message”:” Characteristic not found",    		“name”:”xxxx”,“address”:”xxxx”,}或
+    {“error” : “descriptor”,						“message”:” Descriptor not found",        		“name” : “xxx”,“address” :”xxxx”,}或
+	{“error” : “readDescriptor”,					“message”:系统返回的错误信息,}-->

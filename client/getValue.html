@@ -1,0 +1,76 @@
+<div class="com">
+	<h3>接口说明.</h3>
+	<pre class="prettyprint linenums order">
+YJH.H5ModuleManager.getValue(
+	successCallBack,   \\成功回调
+	FailedCallBack,   \\失败回调
+	key   \\key
+)
+	</pre>
+	
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>successCallBack</li>
+			<li>NO</li>
+			<li>Function</li>
+			<li>成功回调</li>
+		</ul>
+		<ul class="ul_con">
+			<li>FailedCallBack</li>
+			<li>NO</li>
+			<li>Function</li>
+			<li>失败回调</li>
+		</ul>
+		<ul class="ul_con">
+			<li>key</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>key</li>
+		</ul>
+	</div>
+	<div class="wrap2">
+		
+		<h3>调用实例:</h3>
+		<pre class="prettyprint linenums order">
+document.addEventListener("deviceready",Deviceready(),false)
+
+function Deviceready(){
+	YJH.H5ModuleManager.getValue(
+	\\成功回调
+	function(suc){   
+		var status=suc.status,   
+		\\获取数据成功的状态，成功返回0
+		
+		var des=suc.des,   
+		\\获取数据成功的状态描述，成功返回"Success"
+		
+		var result=des.result   
+		\\获取成功返回的结果，成功返回{}
+	},
+	
+	\\失败回调
+	function(err){   
+		var status=err.status,   
+		\\获取数据失败的状态，失败返回1
+		
+		var des=err.des,   
+		\\获取数据失败的状态描述，失败返回"can not find value with key:userInao"
+		
+		var result=err.result   
+		\\获取失败返回的结果，失败返回""
+	},
+	
+	"userInfo"   \\key
+  )
+}
+
+		</pre>
+		
+	</div>
+</div>

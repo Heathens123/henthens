@@ -1,0 +1,43 @@
+<div class="com">
+	<h3>接口说明</h3>
+	<pre class="prettyprint linenums order">
+YJH.H5ProgressHUD.showLoading(
+	Message,   \\提示信息
+	Delay   \\信息提示显示时间，默认为60秒
+)
+	</pre>
+	
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>Message</li>
+			<li>YES</li>
+			<li>String</li>
+			<li>提示信息</li>
+		</ul>
+		<ul class="ul_con">
+			<li>Delay</li>
+			<li>YES</li>
+			<li>Float</li>
+			<li>信息提示显示时间，默认为60秒</li>
+		</ul>
+		
+	</div>
+	<div class="wrap2">
+		
+		<h3>调用实例:</h3>
+	<pre class="prettyprint linenums order">
+document.addEventListener(
+	"deviceready",
+	YJH.H5ProgressHUD.showLoading("showLoading",70),
+	false
+)
+		
+	</pre>
+	</div>
+</div>

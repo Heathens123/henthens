@@ -1,0 +1,154 @@
+<div class="com">
+	<h3> 接口说明</h3>
+	<p>向某个服务的特征写入数据，此数据必须是base64编码的字符串，一般都是想蓝牙写入二进制，那么此时可以使用<b style="color: gray;font-weight: normal;">bytesToEncodedString将unit8Array转换成base64String.</b> 注:不能向只读属性的特征写数据.</p>
+	<pre class="prettyprint linenums order">
+YJH.BluetoothleManager.write(
+	writeSuccess,   \\成功回调 
+	writeError,   \\失败回调 
+	{ 
+		"value":"WriteValue"   \\写入的值
+		"service": "serviceUUID",   \\服务UUID 
+		"characteristic": "characteristicUUID"   \\特征UUID
+		"type":"WriteType"   \\写入的类型
+		"address": "addressUUID ",   \\蓝牙UUID 
+	}
+);
+	</pre>
+	
+		<!--<pre class="prettyprint linenums order">
+YJH.BluetoothleManager.write(
+	function(succ){},
+	function(err){}, 
+	{
+		"value":"V3JpdGUgSGVsbG8gV29ybGQ=",
+		"service":"180F",
+		"characteristic":"2A19",
+		"type":"noResponse",
+		"address":"ABC123"
+	}
+);
+		</pre>-->
+	<div class="wrap1">
+		<ul class="ul_con">
+			<li>参数</li>
+			<li>可为空</li>
+			<li>参数类型</li>
+			<li>备注</li>
+		</ul>
+		<ul class="ul_con">
+			<li>address</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>蓝牙UUID</li>
+		</ul>
+		<ul class="ul_con">
+			<li>service</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>服务UUID</li>
+		</ul>
+		<ul class="ul_con">
+			<li>characteristic</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>特征UUID</li>
+		</ul>
+		<ul class="ul_con">
+			<li>value</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>写入的值</li>
+		</ul>
+		<ul class="ul_con">
+			<li>type</li>
+			<li>NO</li>
+			<li>String</li>
+			<li>写入类型，包括response和noResponse.</li>
+		</ul>
+	</div>
+	<div class="wrap2">
+		<h3>调用实例:</h3>
+		<pre class="prettyprint linenums order">
+			
+document.addEventListener("deviceready",Deviceready(),false) 
+
+function  Deviceready(){
+	YJH.BluetoothleManager.write(
+    \\成功回调
+	function(succ){    
+		var status=succ.status   
+		\\获取成功后返回的status；值为"written"
+		
+		var service=succ.service   
+		\\获取成功后返回的特定服务UUID。如"180d"
+		
+		var characteristic=succ.characteristic   
+		\\获取成功后返回的特征的UUID。如"2a37"
+		
+		var value=succ.value   
+		\\获取成功返回的写入的值。如"V3JpdGUgSGVsbG8gV29ybGQ="
+		
+		var address=succ.address   
+		\\获取成功返回的蓝牙UUID，如"ECC037FD-72AE-AFC5-9213-CA785B3B5C63"
+	},
+	
+	\\失败回调
+	function(err){   
+		var error=err.error
+		\\返回关闭失败时的状态，值为"enable"或"initialize"或"arguments"或
+		"connect"或"neverConnected"或"service"或"characteristic"
+		或"descriptors"或"subscription"或write""。
+		
+		var message=err.message 
+		\\返回关闭失败时的错误信息，值为"Bluetooth not enabled"或
+		"Bluetooth not initialized"或"Argument object not found"或
+		"No connection address"或"Never connected to connection"或
+		"Service not found"或"Characteristic not found"或"系统返回的错误信息"
+		或"Already subscribed"或"Write value not found"或"系统返回错误信息"。
+		
+		var name=err.name   
+		\\成功后返回配对的设备名称,此项可以没有
+		
+		var address=err.address   
+		\\成功后返回配对的蓝牙UUID,此项可以没有
+	},
+	
+	\\参数
+	{
+		"value":"V3JpdGUgSGVsbG8gV29ybGQ=",  \\写入的值
+		"service":"180F",   \\服务UUID 
+		"characteristic":"2A19",   \\特征UUID
+		"type":"noResponse",   \\写入的类型
+		"address":"ABC123"   \\蓝牙UUID 
+	}
+  );
+}
+
+		</pre>
+	</div>
+</div>
+
+
+		<!--<h3>成功返回值:</h3>
+		<p>
+			{<br/>
+			  "status": "written",<br/>
+			  "service": "180F",<br/>
+			  "characteristic": "2A19",<br/>
+			  "value": "V3JpdGUgSGVsbG8gV29ybGQ=",<br/>
+			  "address": "ABC123"<br/>
+			}
+
+		</p>
+		<h3>失败返回值:</h3>
+		<p>{“error” : “enable”,                    “message” : “Bluetooth not enabled” }或   </p>
+		<p>{“error” : “initialize”,                 “message” : “Bluetooth not initialized” }或</p>
+		<p>{“error” : “arguments”,                 “message” : “Argument object not found” }或</p>
+		<p>{“error” : “connect”,                    “message” : “No connection address” }或</p>	
+		<p>{“error” : “neverConnected”,             “message”:” Never connected to connection"}或</p>
+		<p>{“error” : “service”,                        “message”:” Service not found",         “name”:”xxxx”,“address”:”xxxx”,}或</p>
+		<p>{“error” : “characteristic”,             “message”:” Characteristic not found",      “name”:”xxxx”,“address”:”xxxx”,}或</p>
+		<p>{“error” : “descriptors”,                “message”:系统返回的错误信息,}</p>
+		<p>{“error” : “subscription”,               “message” : “Already subscribed” }</p>
+		<p>{“error” : “write”,                      “message” : “Write value not found” }或
+		   {"error": " write ",                     “message”:系统返回错误信息,}</p>-->
